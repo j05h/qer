@@ -1,0 +1,81 @@
+= qer
+
+* http://github.com/jkleinpeter-qer
+
+== DESCRIPTION:
+
+Qer is the friendly easy command-line todo list queueing system.
+
+== FEATURES/PROBLEMS:
+
+Qer is a really simple command line task manager.  You add things into your
+list, and it stores it for you.  You can treat it like a queue or a stack, 
+or both.  Whatever you like.  Qer keeps track of when you put items into
+the list so you can know how long they've been there.  
+
+Example Output:
+
+$ qer
+----------------------------> Stuff on the Hopper <---------------------------
+------------------------------------------------------------------------------
+(0) Get Groceries from the store.                                > 31 min ago
+(1) Call Mom.  Its her 60th Birthday on Friday!                 ~ 5 hours ago
+(2) Write unit tests.                                           ~ 89 days ago
+(3) Come up with self-referential documentation joke.             ~ 1 day ago
+(4) Deploy Qer to github.                                        > 15 sec ago
+------------------------------------------------------------------------------
+
+== SYNOPSIS:
+
+Qer supports various operation for manipulating your Todo list.
+
+Commands:
+  print - Prints out the task list
+    `qer`
+  a(dd) - Adds a task to the end of the list
+    `qer add Stuff to do`
+  r(emove) - Remove the given task number from the list
+    `qer remove 2`
+  pu(sh) - Push a task onto the top of the list
+    `qer push Another boring thing`
+  po(p) - Pops the top item off the list
+    `qer pop`
+  clear - Clears the entire list
+    `qer clear`
+  help - Prints this message
+    `qer help`
+    
+== REQUIREMENTS:
+
+* Ruby
+* Ruby Gems (for installation)
+* Shoulda (to run tests)
+
+== INSTALL:
+
+sudo gem install jkleinpeter-qer --source http://gems.github.com
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2009 Josh Kleinpeter
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
