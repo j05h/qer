@@ -14,16 +14,15 @@ or both.  Whatever you like.  Qer keeps track of when you put items into
 the list so you can know how long they've been there.  
 
 Example Output:
-
-$ qer
-----------------------------> Stuff on the Hopper <---------------------------
-------------------------------------------------------------------------------
-(0) Get Groceries from the store.                                > 31 min ago
-(1) Call Mom.  Its her 60th Birthday on Friday!                 ~ 5 hours ago
-(2) Write unit tests.                                           ~ 89 days ago
-(3) Come up with self-referential documentation joke.             ~ 1 day ago
-(4) Deploy Qer to github.                                        > 15 sec ago
-------------------------------------------------------------------------------
+  $ qer
+  ---------------------------> Stuff on the Hopper <--------------------------
+  ----------------------------------------------------------------------------
+  (0) Get Groceries from the store.                              > 31 min ago
+  (1) Call Mom.  Its her 60th Birthday on Friday!               ~ 5 hours ago
+  (2) Write unit tests.                                         ~ 89 days ago
+  (3) Come up with self-referential documentation joke.           ~ 1 day ago
+  (4) Deploy Qer to github.                                      > 15 sec ago
+  ----------------------------------------------------------------------------
 
 == SYNOPSIS:
 
