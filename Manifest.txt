@@ -4,11 +4,14 @@ PostInstall.txt
 README.rdoc
 Rakefile
 bin/qer
+j05h.gemspec
 lib/qer.rb
 lib/qer/todo.rb
+qer.gemspec
 script/console
 script/destroy
 script/generate
 test/test_helper.rb
 test/test_qer.rb
 test/test_queue
+test/testqueue

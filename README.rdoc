@@ -1,6 +1,6 @@
 = qer
 
-* http://github.com/jkleinpeter-qer
+* http://github.com/j05h-qer
 
 == DESCRIPTION:
 
@@ -52,7 +52,7 @@ Commands:
 
 == INSTALL:
 
-sudo gem install jkleinpeter-qer --source http://gems.github.com
+sudo gem install j05h-qer --source http://gems.github.com
 
 == LICENSE:
 
