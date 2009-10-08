@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = ["josh@kleinpeter.org"]
   s.executables = ["qer"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc"]
-  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "bin/qer", "j05h.gemspec", "lib/qer.rb", "lib/qer/todo.rb", "qer.gemspec", "script/console", "script/destroy", "script/generate", "test/test_helper.rb", "test/test_qer.rb", "test/test_queue", "test/testqueue"]
+  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "bin/qer", "lib/qer.rb", "lib/qer/todo.rb", "qer.gemspec", "script/console", "script/destroy", "script/generate", "test/test_helper.rb", "test/test_qer.rb", "test/test_queue", "test/testqueue"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/j05h-qer}
   s.post_install_message = %q{PostInstall.txt}

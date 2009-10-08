@@ -4,7 +4,6 @@ PostInstall.txt
 README.rdoc
 Rakefile
 bin/qer
-j05h.gemspec
 lib/qer.rb
 lib/qer/todo.rb
 qer.gemspec
