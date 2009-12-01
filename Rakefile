@@ -1,9 +1,9 @@
-%w[rubygems rake rake/clean fileutils newgem rubigen].each { |f| require f }
+%w[rubygems rake rake/clean fileutils hoe newgem rubigen].each { |f| require f }
 require File.dirname(__FILE__) + '/lib/qer'
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.new('qer', Qer::VERSION) do |p|
+$hoe = Hoe.spec('qer') do |p|
   p.developer('Josh Kleinpeter', 'josh@kleinpeter.org')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.post_install_message = 'PostInstall.txt'
