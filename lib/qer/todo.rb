@@ -53,6 +53,13 @@ module Qer
       print
     end
 
+    def bump(index, new_index = 0)
+      item = queue.delete_at(index.to_i)
+      queue.insert(new_index.to_i, item)
+      write
+      print "Bumped #{item.last} to position #{new_index}"
+    end
+
     def write
       Marshal.dump(self.queue, file("w+"))
     end
@@ -102,6 +109,7 @@ module Qer
       when /^r(emove)?/: self.remove(args.shift.to_i) # qer remove 0
       when /^pu(sh)?/  : self.push(args.join(" "))    # qer push Some task 2
       when /^po(p)?/   : self.pop                     # qer pop
+      when /^b(ump)?/  : bump(*args.first(2))         # qer bump
       when /^clear/    : self.clear                   # qer clear 
       when /.*help/    : self.help                    # qer help
       else self.print                                 # qer
@@ -124,6 +132,10 @@ Commands:
     `qer push Another boring thing`
   po(p) - Pops the top item off the list
     `qer pop`
+  b(ump) - Bumps the given index to the top of the list,
+           or to the specified index
+    `qer bump 3`   -> bumps index 3 up to the top
+    `qer bump 5 2` -> bumps index five up to 2
   clear - Clears the entire list
     `qer clear`
   help - Prints this message

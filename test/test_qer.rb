@@ -76,10 +76,29 @@ class TestQer < Test::Unit::TestCase
       @todo.add("Some Other Task")
       @todo.clear
     end
-    
+  
     should "have one item" do
       assert_equal 0, @todo.size
     end
+  end
+
+  context "bump" do
+    setup do
+      @todo.add("first")
+      @todo.add("second")
+      @todo.add("third")
+    end
+
+    should "be able to bump to the top" do
+      @todo.bump(2)
+      assert_equal "third", @todo.queue.first.last
+    end
+
+    should "be able to bump to a specific location" do
+      @todo.bump(2,1)
+      assert_equal "third", @todo.queue[1].last
+    end
+
   end
   
   context "read" do
@@ -143,6 +162,16 @@ class TestQer < Test::Unit::TestCase
     should "print" do
       @todo.command([])
       assert_equal 1, @todo.size
+    end
+
+    should "bump" do
+      @todo.add("second")
+      @todo.command(%w(bump 1))
+      assert_equal "second", @todo.queue.first.last
+
+      @todo.add('third')
+      @todo.command(%w(bump 2 1))
+      assert_equal "third", @todo.queue[1].last
     end
   end  
   
