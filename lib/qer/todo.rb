@@ -55,7 +55,7 @@ module Qer
 
     def bump(index, new_index = 0)
       item = queue.delete_at(index.to_i)
-      queue.insert(new_index.to_i, item)
+      self.queue.insert(new_index.to_i, item)
       write
       print "Bumped #{item.last} to position #{new_index}"
     end
@@ -109,7 +109,7 @@ module Qer
       when /^r(emove)?/: self.remove(args.shift.to_i) # qer remove 0
       when /^pu(sh)?/  : self.push(args.join(" "))    # qer push Some task 2
       when /^po(p)?/   : self.pop                     # qer pop
-      when /^b(ump)?/  : bump(*args.first(2))         # qer bump
+      when /^b(ump)?/  : self.bump(*args.first(2))    # qer bump
       when /^clear/    : self.clear                   # qer clear 
       when /.*help/    : self.help                    # qer help
       else self.print                                 # qer
