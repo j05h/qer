@@ -82,6 +82,27 @@ class TestQer < Test::Unit::TestCase
     end
   end
 
+
+  context "bump" do
+    setup do
+      @todo.add("first")
+      @todo.add("second")
+      @todo.add("third")
+    end
+
+    should "be able to bump to the top" do
+      @todo.bump(2)
+      assert_equal "third", @todo.queue.first.last
+    end
+
+    should "be able to bump to a specific location" do
+      @todo.bump(2,1)
+      assert_equal "third", @todo.queue[1].last
+    end
+
+  end
+  
+
   context "read" do
     setup do
       @file = File.join(File.dirname(__FILE__), 'test_queue')
@@ -144,7 +165,18 @@ class TestQer < Test::Unit::TestCase
       @todo.command([])
       assert_equal 1, @todo.size
     end
-  end
+
+    should "bump" do
+      @todo.add("second")
+      @todo.command(%w(bump 1))
+      assert_equal "second", @todo.queue.first.last
+
+      @todo.add('third')
+      @todo.command(%w(bump 2 1))
+      assert_equal "third", @todo.queue[1].last
+    end
+  end  
+  
 
   context "time" do
     setup do

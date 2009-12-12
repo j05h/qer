@@ -39,6 +39,10 @@ Commands:
     `qer push Another boring thing`
   po(p) - Pops the top item off the list
     `qer pop`
+  b(ump) - Bumps the given index to the top of the list,
+           or to the specified index
+    `qer bump 3`   -> bumps index 3 up to the top
+    `qer bump 5 2` -> bumps index five up to 2
   clear - Clears the entire list
     `qer clear`
   help - Prints this message
