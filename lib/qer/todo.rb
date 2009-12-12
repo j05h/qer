@@ -15,27 +15,6 @@ module Qer
       history_file {|f| self.history = Marshal.load(f) } rescue self.history= []
     end
 
-    def file(mode = "r", &block)
-      File.open(@filename, mode) do |f|
-        yield f
-      end
-    end
-
-    def history_file(mode = "r", &block)
-      File.open(@history_filename, mode) do |f|
-        yield f
-      end
-    end
-
-    def size
-      self.queue.size
-    end
-
-    def returning(thing)
-      yield
-      thing
-    end
-
     def add(item)
       self.queue << [Time.now.to_s, item]
       write
@@ -74,6 +53,14 @@ module Qer
       print "Bumped #{item.last} to position #{new_index}"
     end
 
+    def print(string = nil)
+      dump self.queue, string
+    end
+
+    def print_history(string = nil)
+      dump self.history, string, "Stuff Completed"
+    end
+    
     def write
       file("w+") {|f| Marshal.dump(self.queue, f) }
     end
@@ -82,6 +69,27 @@ module Qer
       history_file("w+") {|f| Marshal.dump(self.history, f) }
     end
 
+    def file(mode = "r", &block)
+      File.open(@filename, mode) do |f|
+        yield f
+      end
+    end
+
+    def history_file(mode = "r", &block)
+      File.open(@history_filename, mode) do |f|
+        yield f
+      end
+    end
+
+    def size
+      self.queue.size
+    end
+
+    def returning(thing)
+      yield
+      thing
+    end
+    
     def width
       80
     end
@@ -114,14 +122,6 @@ module Qer
       left      = "(#{index}) #{task}"
       right     = "#{tf(time)} | #{tf(end_time)}".rjust(width-left.length)
       right.insert(0, left)
-    end
-
-    def print(string = nil)
-      dump self.queue, string
-    end
-
-    def print_history(string = nil)
-      dump self.history, string, "Stuff Completed"
     end
 
     def dump(queue, string, label = title)
