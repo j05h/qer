@@ -79,7 +79,7 @@ module Qer
     end
 
     def width
-      100
+      80
     end
 
     def title
