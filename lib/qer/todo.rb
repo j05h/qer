@@ -11,16 +11,20 @@ module Qer
       @filename  = filename
       @history_filename = "#{filename}-history"
 
-      self.queue = Marshal.load(file) rescue []
-      self.history = Marshal.load(history_file) rescue []
+      file {|f| self.queue = Marshal.load(f) } rescue self.queue= []
+      history_file {|f| self.history = Marshal.load(f) } rescue self.history= []
     end
 
-    def file(mode = "r")
-      File.new(@filename, mode)
+    def file(mode = "r", &block)
+      File.open(@filename, mode) do |f|
+        yield f
+      end
     end
 
-    def history_file(mode = "r")
-      File.new(@history_filename, mode)
+    def history_file(mode = "r", &block)
+      File.open(@history_filename, mode) do |f|
+        yield f
+      end
     end
 
     def size
@@ -71,11 +75,11 @@ module Qer
     end
 
     def write
-      Marshal.dump(self.queue, file("w+"))
+      file("w+") {|f| Marshal.dump(self.queue, f) }
     end
 
     def write_history
-      Marshal.dump(self.history, history_file("w+"))
+      history_file("w+") {|f| Marshal.dump(self.history, f) }
     end
 
     def width
