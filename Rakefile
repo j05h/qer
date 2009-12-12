@@ -6,7 +6,6 @@ require File.dirname(__FILE__) + '/lib/qer'
 $hoe = Hoe.spec('qer') do |p|
   p.developer('Josh Kleinpeter', 'josh@kleinpeter.org')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
-  p.post_install_message = 'PostInstall.txt'
   p.rubyforge_name       = p.name
   p.description          = "Qer is an easy command-line todo list."
   p.summary              = "Just type `qer --help` to get started."
