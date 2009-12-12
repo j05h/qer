@@ -230,7 +230,7 @@ class TestQer < Test::Unit::TestCase
 
   context "print" do
     should "have width" do
-      assert_equal 100, @todo.width
+      assert_equal 80, @todo.width
     end
 
     should "have a title" do
