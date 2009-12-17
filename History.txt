@@ -1,3 +1,7 @@
+== 0.2.0 2009-12-17
+* 1 major enhancement:
+  * Added the history command to view completed tasks
+
 == 0.1.0 2009-12-07
 
 * 1 major enhancement:
