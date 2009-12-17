@@ -58,7 +58,7 @@ module Qer
     end
 
     def print_history(string = nil)
-      dump self.history, string, "Stuff Completed"
+      dump self.history, string, history_title
     end
     
     def write
@@ -96,6 +96,10 @@ module Qer
 
     def title
       "> Stuff on the Hopper < ".center(width, '-')
+    end
+
+    def history_title
+      "> Stuff Completed < ".center(width, '-')
     end
 
     def hl
