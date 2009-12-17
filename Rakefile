@@ -5,6 +5,7 @@ require File.dirname(__FILE__) + '/lib/qer'
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.spec('qer') do |p|
   p.developer('Josh Kleinpeter', 'josh@kleinpeter.org')
+  p.developer('Coby Randquist', 'randquistcp@gmail.com')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.rubyforge_name       = p.name
   p.description          = "Qer is an easy command-line todo list."

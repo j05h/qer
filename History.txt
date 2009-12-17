@@ -1,3 +1,9 @@
+== 0.1.0 2009-12-07
+
+* 1 major enhancement:
+  * Added a bump command to move items in the list
+
+
 == 0.0.1 2009-10-02
 
 * 1 major enhancement:
