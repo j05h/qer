@@ -152,8 +152,8 @@ module Qer
       when /^po(p)?/     : self.pop                     # qer pop
       when /^b(ump)?/    : self.bump(*args.first(2))    # qer bump
       when /^clear/      : self.clear                   # qer clear
-      when /^h(istory)?/  : self.print_history          # qer history
       when /.*help/      : self.help                    # qer help
+      when /^h(istory)?/  : self.print_history          # qer history
       else self.print                                   # qer
       end
     end
@@ -180,7 +180,7 @@ Commands:
     `qer bump 5 2` -> bumps index five up to 2
   clear - Clears the entire list
     `qer clear`
-  history - displays list of completed tasks
+  h(istory) - displays list of completed tasks
     `qer history`
   help - Prints this message
     `qer help`

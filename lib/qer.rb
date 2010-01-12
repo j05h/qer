@@ -3,7 +3,7 @@ $:.unshift(File.dirname(__FILE__)) unless $:.include?(File.dirname(__FILE__)) ||
 require 'time'
 require 'qer/todo'
 module Qer
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
 end
 
 class Time
