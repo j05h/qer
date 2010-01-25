@@ -49,6 +49,7 @@ module Qer
     def bump(index, new_index = 0)
       item = queue.delete_at(index.to_i)
       self.queue.insert(new_index.to_i, item)
+      self.queue.delete_if {|i| i.nil? }
       write
       print "Bumped #{item.last} to position #{new_index}"
     end

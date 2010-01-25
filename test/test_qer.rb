@@ -100,6 +100,12 @@ class TestQer < Test::Unit::TestCase
       assert_equal "third", @todo.queue[1].last
     end
 
+    should "not leave nil rows in if we bump too far back" do
+      @todo.bump(0,100)
+      assert !@todo.queue.include?(nil)
+      assert_equal "first", @todo.queue.last[1] 
+    end
+
   end
   
 
