@@ -1,3 +1,12 @@
+== 0.2.2 2010-01-25
+* 2 bugfixes
+  * Bumping too far back was leaving nil rows
+  * nil rows were raising errors - check for them now
+
+== 0.2.1 2010-01-11
+* 1 bugfix:
+  * History was overriding help.  Couldn't get to help via command
+
 == 0.2.0 2009-12-17
 * 1 major enhancement:
   * Added the history command to view completed tasks
