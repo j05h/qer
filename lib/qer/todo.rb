@@ -111,6 +111,7 @@ module Qer
     end
 
     def process_line(index, item)
+      return unless item
       item.size == 2 ? process_queue_line(index,item) : process_history_line(index,item)
     end
 
