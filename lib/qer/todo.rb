@@ -135,9 +135,9 @@ module Qer
       out << string if(string)
       out << label
       out << hl
-      if(queue.size > 0)
-        queue.each_index do |index|
-          out << process_line(index, queue[index])
+      if queue.empty?
+        queue.each_with_index do |item, index|
+          out << process_line(index, item)
         end
       else
         out << "Nothing in this queue!"
