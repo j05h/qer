@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + '/lib/qer'
 $hoe = Hoe.spec('qer') do |p|
   p.developer('Josh Kleinpeter', 'josh@kleinpeter.org')
   p.developer('Coby Randquist', 'randquistcp@gmail.com')
+  p.developer('Jacob Dunphy', 'jacob.dunphy@gmail.com')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.rubyforge_name       = p.name
   p.description          = "Qer is an easy command-line todo list."
@@ -14,7 +15,7 @@ $hoe = Hoe.spec('qer') do |p|
     ['shoulda','= 2.10.1'],
     ['newgem', ">= #{::Newgem::VERSION}"]
   ]
-  
+
   p.clean_globs |= %w[**/.DS_Store tmp *.log]
   path = (p.rubyforge_name == p.name) ? p.rubyforge_name : "\#{p.rubyforge_name}/\#{p.name}"
   p.remote_rdoc_dir = File.join(path.gsub(/^#{p.rubyforge_name}\/?/,''), 'rdoc')
