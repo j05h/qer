@@ -135,7 +135,7 @@ module Qer
       out << string if(string)
       out << label
       out << hl
-      if queue.empty?
+      unless queue.empty?
         queue.each_with_index do |item, index|
           out << process_line(index, item)
         end
