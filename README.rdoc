@@ -58,7 +58,7 @@ Commands:
 
 == INSTALL:
 
-sudo gem install j05h-qer --source http://gems.github.com
+sudo gem install qer
 
 == LICENSE:
 
