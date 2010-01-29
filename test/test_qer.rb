@@ -70,15 +70,31 @@ class TestQer < Test::Unit::TestCase
     end
   end
 
-  context "clear" do
+  context "clear all" do
     setup do
       @todo.add("Some Task")
       @todo.add("Some Other Task")
       @todo.clear
     end
 
-    should "have one item" do
+    should "have no items" do
       assert_equal 0, @todo.size
+    end
+  end
+  
+  context "clear individual item" do
+    setup do
+      @todo.add("Some Task")
+      @todo.add("Some Other Task")
+      @item = @todo.clear(0)
+    end
+    
+    should "have the right item left" do
+      assert_equal "Some Task", @item[1]
+    end
+    
+    should "have one item" do
+      assert_equal 1, @todo.size
     end
   end
 

@@ -30,10 +30,17 @@ module Qer
       end
     end
 
-    def clear
-      self.queue = []
-      write
-      print "ToDo list cleared"
+    def clear(index = nil)
+      unless index.nil?
+        returning(item = self.queue.delete_at(index.to_i)) do
+          write
+          print "Removed #{item.last}"
+        end
+      else
+        self.queue = []
+        write
+        print "ToDo list cleared"
+      end
     end
 
     def pop
@@ -153,7 +160,7 @@ module Qer
       when /^pu(sh)?/    : self.push(args.join(" "))    # qer push Some task 2
       when /^po(p)?/     : self.pop                     # qer pop
       when /^b(ump)?/    : self.bump(*args.first(2))    # qer bump
-      when /^clear/      : self.clear                   # qer clear
+      when /^clear/      : self.clear(args.shift)                   # qer clear
       when /.*help/      : self.help                    # qer help
       when /^h(istory)?/  : self.print_history          # qer history
       else self.print                                   # qer
@@ -182,6 +189,8 @@ Commands:
     `qer bump 5 2` -> bumps index five up to 2
   clear - Clears the entire list
     `qer clear`
+  clear - Clears the given index without writing to history file
+    `qer clear 3`
   h(istory) - displays list of completed tasks
     `qer history`
   help - Prints this message
