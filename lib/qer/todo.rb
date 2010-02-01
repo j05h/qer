@@ -26,7 +26,7 @@ module Qer
         self.history << [Time.now.to_s, item[0], item[1]]
         write_history
         write
-        print "Removed #{item.last}"
+        print "Removed: #{item.last}"
       end
     end
 
@@ -43,7 +43,7 @@ module Qer
     def push(item)
       self.queue.unshift([Time.now.to_s, item])
       write
-      print
+      print "Pushed to the top: #{item}"
     end
 
     def bump(index, new_index = 0)
