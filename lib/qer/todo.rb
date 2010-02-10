@@ -148,15 +148,24 @@ module Qer
 
     def command(args)
       case(args.shift)
-      when /^a(dd)?/     : self.add(args.join(" "))     # qer add Some task 1
-      when /^r(emove)?/  : self.remove(args.shift.to_i) # qer remove 0
-      when /^pu(sh)?/    : self.push(args.join(" "))    # qer push Some task 2
-      when /^po(p)?/     : self.pop                     # qer pop
-      when /^b(ump)?/    : self.bump(*args.first(2))    # qer bump
-      when /^clear/      : self.clear                   # qer clear
-      when /.*help/      : self.help                    # qer help
-      when /^h(istory)?/  : self.print_history          # qer history
-      else self.print                                   # qer
+      when /^a(dd)?/
+        self.add(args.join(" "))     # qer add Some task 1
+      when /^r(emove)?/
+        self.remove(args.shift.to_i) # qer remove 0
+      when /^pu(sh)?/
+        self.push(args.join(" "))    # qer push Some task 2
+      when /^po(p)?/
+        self.pop                     # qer pop
+      when /^b(ump)?/
+        self.bump(*args.first(2))    # qer bump
+      when /^clear/
+        self.clear                   # qer clear
+      when /.*help/
+        self.help                    # qer help
+      when /^h(istory)?/
+        self.print_history          # qer history
+      else
+        self.print                                   # qer
       end
     end
 

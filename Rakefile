@@ -3,23 +3,21 @@ require File.dirname(__FILE__) + '/lib/qer'
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.spec('qer') do |p|
-  p.developer('Josh Kleinpeter', 'josh@kleinpeter.org')
-  p.developer('Coby Randquist', 'randquistcp@gmail.com')
-  p.developer('Jacob Dunphy', 'jacob.dunphy@gmail.com')
-  p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
-  p.rubyforge_name       = p.name
-  p.description          = "Qer is an easy command-line todo list."
-  p.summary              = "Just type `qer --help` to get started."
-  p.extra_dev_deps = [
+$hoe = Hoe.spec('qer') do
+  developer('Josh Kleinpeter', 'josh@kleinpeter.org')
+  developer('Coby Randquist', 'randquistcp@gmail.com')
+  developer('Jacob Dunphy', 'jacob.dunphy@gmail.com')
+  self.changes              = paragraphs_of("History.txt", 0..1).join("\n\n")
+  self.rubyforge_name       = name
+  self.description          = "Qer is an easy command-line todo list."
+  self.summary              = "Just type `qer --help` to get started."
+  self.extra_dev_deps = [
     ['shoulda','= 2.10.1'],
     ['newgem', ">= #{::Newgem::VERSION}"]
   ]
 
-  p.clean_globs |= %w[**/.DS_Store tmp *.log]
-  path = (p.rubyforge_name == p.name) ? p.rubyforge_name : "\#{p.rubyforge_name}/\#{p.name}"
-  p.remote_rdoc_dir = File.join(path.gsub(/^#{p.rubyforge_name}\/?/,''), 'rdoc')
-  p.rsync_args = '-av --delete --ignore-errors'
+  self.clean_globs |= %w[**/.DS_Store tmp *.log]
+  self.rsync_args = '-av --delete --ignore-errors'
 end
 
 require 'newgem/tasks' # load /tasks/*.rake

@@ -24,6 +24,6 @@ class Time
        when 86400..525599   then "~ #{(distance_in_minutes / 43200).round} months ago"
        when 525600..1051199 then "~ 1 year ago"
        else                      "> #{(distance_in_minutes / 525600).round} years ago"
-     end
-   end
+    end
+  end
 end
