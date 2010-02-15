@@ -113,7 +113,7 @@ module Qer
 
     def process_line(index, item)
       return unless item
-      item.size == 2 ? process_queue_line(index,item) : process_history_line(index,item)
+      item.size == 2 ? process_queue_line(index,item) : process_history_line(item)
     end
 
     def process_queue_line(index, item)
@@ -123,11 +123,10 @@ module Qer
       right.insert(0, left)
     end
 
-    def process_history_line(index, item)
+    def process_history_line(item)
       end_time, time, task = item
-      left      = "(#{index}) #{task}"
-      right     = "#{tf(time)} | #{tf(end_time)}".rjust(width-left.length)
-      right.insert(0, left)
+      right     = "#{tf(time)} | #{tf(end_time)}".rjust(width-task.length)
+      right.insert(0, task)
     end
 
     def dump(queue, string, label = title)

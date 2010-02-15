@@ -1,4 +1,4 @@
-%w[rubygems rake rake/clean fileutils hoe newgem rubigen].each { |f| require f }
+%w[rubygems rake rake/clean fileutils hoe].each { |f| require f }
 require File.dirname(__FILE__) + '/lib/qer'
 
 # Generate all the Rake tasks
@@ -12,8 +12,7 @@ $hoe = Hoe.spec('qer') do
   self.description          = "Qer is an easy command-line todo list."
   self.summary              = "Just type `qer --help` to get started."
   self.extra_dev_deps = [
-    ['shoulda','= 2.10.1'],
-    ['newgem', ">= #{::Newgem::VERSION}"]
+    ['shoulda','> 2.10.1'],
   ]
 
   self.clean_globs |= %w[**/.DS_Store tmp *.log]
