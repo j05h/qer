@@ -22,11 +22,14 @@ module Qer
     end
 
     def remove(index)
-      returning(item = self.queue.delete_at(index)) do
+      if item = self.queue.delete_at(index)
         self.history << [Time.now.to_s, item[0], item[1]]
         write_history
         write
         print "Removed: #{item.last}"
+        item
+      else
+        print "Provided index does not exist."
       end
     end
 
@@ -86,11 +89,6 @@ module Qer
       self.queue.size
     end
 
-    def returning(thing)
-      yield
-      thing
-    end
-    
     def width
       80
     end

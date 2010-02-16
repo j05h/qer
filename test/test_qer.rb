@@ -68,6 +68,12 @@ class TestQer < Test::Unit::TestCase
     should "have one item" do
       assert_equal 1, @todo.size
     end
+
+    should "not error out when an invalid index is removed" do
+      assert_nothing_raised {
+        @todo.remove(12)
+      }
+    end
   end
   
   context "clear" do
@@ -156,6 +162,11 @@ class TestQer < Test::Unit::TestCase
       assert_equal "Some Task", @todo.command(%w(remove 0)).last
       assert_equal 0, @todo.size
       assert_output "Removed: Some Task"
+    end
+
+    should "not remove bad index" do
+      @todo.command(%w(remove 14))
+      assert_output "Provided index does not exist."
     end
     
     should "push" do
