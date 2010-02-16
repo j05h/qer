@@ -1,3 +1,15 @@
+== 0.2.5 2010-02-16
+* 1 bugfix:
+  * Don't error badly when calling remove with a bad index
+
+== 0.2.4 2010-02-15
+* 1 very minor enhancement:
+  * remove index from history print. 
+
+== 0.2.3 2010-02-09
+* 1 bugfix:
+  * fixed ruby 1.9 support
+
 == 0.2.2 2010-01-25
 * 2 bugfixes
   * Bumping too far back was leaving nil rows
