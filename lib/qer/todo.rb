@@ -33,10 +33,17 @@ module Qer
       end
     end
 
-    def clear
-      self.queue = []
-      write
-      print "ToDo list cleared"
+    def clear(index = nil)
+      unless index.nil?
+        item = self.queue.delete_at(index.to_i)
+        write
+        print "Removed #{item.last}"
+        item
+      else
+        self.queue = []
+        write
+        print "ToDo list cleared"
+      end
     end
 
     def pop
@@ -64,7 +71,7 @@ module Qer
     def print_history(string = nil)
       dump self.history, string, history_title
     end
-    
+
     def write
       file("w+") {|f| Marshal.dump(self.queue, f) }
     end
@@ -156,13 +163,13 @@ module Qer
       when /^b(ump)?/
         self.bump(*args.first(2))    # qer bump
       when /^clear/
-        self.clear                   # qer clear
+        self.clear(args.shift)       # qer clear
       when /.*help/
         self.help                    # qer help
       when /^h(istory)?/
-        self.print_history          # qer history
+        self.print_history           # qer history
       else
-        self.print                                   # qer
+        self.print                # qer
       end
     end
 
@@ -188,6 +195,8 @@ Commands:
     `qer bump 5 2` -> bumps index five up to 2
   clear - Clears the entire list
     `qer clear`
+  clear - Clears the given index without writing to history file
+    `qer clear 3`
   h(istory) - displays list of completed tasks
     `qer history`
   help - Prints this message
