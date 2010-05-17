@@ -294,7 +294,7 @@ class TestQer < Test::Unit::TestCase
   context "config" do
     should "set #filename" do
       with_config('queue_file' => 'foo') do |todo|
-        assert_equal 'foo', todo.filename
+        assert_equal File.expand_path('foo'), todo.filename
       end
     end
 

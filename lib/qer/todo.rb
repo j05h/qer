@@ -108,7 +108,7 @@ module Qer
     end
 
     def filename
-      @filename ||= @config["queue_file"] || File.expand_path("~/.qer-queue")
+      @filename ||= File.expand_path(@config["queue_file"] || "~/.qer-queue")
     end
 
     def history_filename
