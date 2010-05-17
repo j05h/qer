@@ -16,12 +16,12 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have one item" do
-      assert_equal 1, @todo.size
+      assert_equal 1, @todo.queue.size
     end
 
     should "have two items" do
       @todo.push("Some Other Task")
-      assert_equal 2, @todo.size
+      assert_equal 2, @todo.queue.size
     end
   end
 
@@ -37,7 +37,7 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have one item" do
-      assert_equal 1, @todo.size
+      assert_equal 1, @todo.queue.size
     end
   end
 
@@ -47,12 +47,12 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have one item" do
-      assert_equal 1, @todo.size
+      assert_equal 1, @todo.queue.size
     end
 
     should "have two items" do
       @todo.add("Some Other Task")
-      assert_equal 2, @todo.size
+      assert_equal 2, @todo.queue.size
     end
   end
 
@@ -68,7 +68,7 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have one item" do
-      assert_equal 1, @todo.size
+      assert_equal 1, @todo.queue.size
     end
 
     should "not error out when an invalid index is removed" do
@@ -86,7 +86,7 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have no items" do
-      assert_equal 0, @todo.size
+      assert_equal 0, @todo.queue.size
     end
   end
 
@@ -102,7 +102,7 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have one item" do
-      assert_equal 1, @todo.size
+      assert_equal 1, @todo.queue.size
     end
   end
 
@@ -137,7 +137,7 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have 5 items" do
-      assert_equal 5, @todo.size
+      assert_equal 5, @todo.queue.size
     end
   end
 
@@ -148,7 +148,7 @@ class TestQer < Test::Unit::TestCase
     end
 
     should "have 2 items" do
-      assert_equal 2, @todo.size
+      assert_equal 2, @todo.queue.size
     end
   end
 
@@ -168,13 +168,13 @@ class TestQer < Test::Unit::TestCase
 
     should "add" do
       @todo.command(%w(add some stuff))
-      assert_equal 2, @todo.size
+      assert_equal 2, @todo.queue.size
       assert_output(/Adding: some stuff/)
     end
 
     should "remove" do
       assert_equal "Some Task", @todo.command(%w(remove 0)).last
-      assert_equal 0, @todo.size
+      assert_equal 0, @todo.queue.size
       assert_output "Removed: Some Task"
     end
 
@@ -185,31 +185,31 @@ class TestQer < Test::Unit::TestCase
 
     should "push" do
       @todo.command(%w(push some stuff))
-      assert_equal 2, @todo.size
+      assert_equal 2, @todo.queue.size
       assert_output "Pushed to the top: some stuff"
     end
 
     should "pop" do
       assert_equal "Some Task", @todo.command(%w(pop)).last
-      assert_equal 0, @todo.size
+      assert_equal 0, @todo.queue.size
       assert_output "Removed: Some Task"
     end
 
     should "clear" do
       @todo.command(%w(clear))
-      assert_equal 0, @todo.size
+      assert_equal 0, @todo.queue.size
       assert_output(/list cleared/)
     end
 
     should "help" do
       @todo.command(%w(help))
-      assert_equal 1, @todo.size
+      assert_equal 1, @todo.queue.size
       assert_output(/Help for Qer/)
     end
 
     should "print" do
       @todo.command([])
-      assert_equal 1, @todo.size
+      assert_equal 1, @todo.queue.size
       assert_output "Stuff on the Hopper"
     end
 

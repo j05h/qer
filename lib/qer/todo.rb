@@ -94,10 +94,6 @@ module Qer
       File.open(history_filename, mode) { |f| yield f }
     end
 
-    def size
-      self.queue.size
-    end
-
     def width
       @config["page_width"] || 80
     end
