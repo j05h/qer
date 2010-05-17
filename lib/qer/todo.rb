@@ -71,7 +71,7 @@ module Qer
     end
 
     def print_history(string = nil)
-      dump self.history, string, history_title
+      dump self.history.last(history_limit), string, history_title
     end
 
     def write
@@ -80,6 +80,10 @@ module Qer
 
     def write_history
       history_file("w+") {|f| Marshal.dump(self.history, f) }
+    end
+
+    def history_limit
+      @config["history_limit"] || 30
     end
 
     def file(mode = "r", &block)

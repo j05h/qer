@@ -303,5 +303,11 @@ class TestQer < Test::Unit::TestCase
         assert_equal 120, todo.width
       end
     end
+
+    should "set #history_limit" do
+      with_config('history_limit' => 40) do |todo|
+        assert_equal 40, todo.history_limit
+      end
+    end
   end
 end
