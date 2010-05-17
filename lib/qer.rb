@@ -4,7 +4,7 @@ require 'time'
 require 'yaml'
 require 'qer/todo'
 module Qer
-  VERSION = '0.2.6'
+  VERSION = '0.3.0'
 end
 
 class Time
