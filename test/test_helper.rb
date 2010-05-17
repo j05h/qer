@@ -16,4 +16,16 @@ class Test::Unit::TestCase
     @output.read
   end
 
+  def with_config(config)
+    tmp_config = 'test/tmp-config'
+
+    File.open(tmp_config, 'w') do |f|
+      f << YAML.dump(config)
+    end
+
+    yield Qer::ToDo.new(tmp_config)
+
+  ensure
+    File.delete(tmp_config) if File.exist?(tmp_config)
+  end
 end

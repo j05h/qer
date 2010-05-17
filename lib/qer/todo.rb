@@ -99,7 +99,7 @@ module Qer
     end
 
     def width
-      80
+      @config["page_width"] || 80
     end
 
     def load_config(path)

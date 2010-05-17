@@ -290,4 +290,18 @@ class TestQer < Test::Unit::TestCase
       assert_equal @todo.width, @todo.hl.size
     end
   end
+
+  context "config" do
+    should "set #filename" do
+      with_config('queue_file' => 'foo') do |todo|
+        assert_equal 'foo', todo.filename
+      end
+    end
+
+    should "set #width" do
+      with_config('page_width' => 120) do |todo|
+        assert_equal 120, todo.width
+      end
+    end
+  end
 end
