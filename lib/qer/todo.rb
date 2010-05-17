@@ -87,15 +87,11 @@ module Qer
     end
 
     def file(mode = "r", &block)
-      File.open(filename, mode) do |f|
-        yield f
-      end
+      File.open(filename, mode) { |f| yield f }
     end
 
     def history_file(mode = "r", &block)
-      File.open(history_filename, mode) do |f|
-        yield f
-      end
+      File.open(history_filename, mode) { |f| yield f }
     end
 
     def size
@@ -139,19 +135,19 @@ module Qer
       Time.time_ago(Time.parse(t))
     end
 
-    def process_line(index, item)
+    def print_line(index, item)
       return unless item
-      item.size == 2 ? process_queue_line(index,item) : process_history_line(item)
+      item.size == 2 ? print_queue_line(index,item) : print_history_line(item)
     end
 
-    def process_queue_line(index, item)
+    def print_queue_line(index, item)
       time, task = item
       left       = "(#{index}) #{task}"
       right      = tf(time).rjust(width - left.length)
       right.insert(0, left)
     end
 
-    def process_history_line(item)
+    def print_history_line(item)
       end_time, time, task = item
       right     = "#{tf(time)} | #{tf(end_time)}".rjust(width-task.length)
       right.insert(0, task)
@@ -164,7 +160,7 @@ module Qer
       out << hl
       unless queue.empty?
         queue.each_with_index do |item, index|
-          out << process_line(index, item)
+          out << print_line(index, item)
         end
       else
         out << "Nothing in this queue!"
