@@ -24,6 +24,16 @@ Example Output:
   (4) Deploy Qer to github.                                      > 15 sec ago
   ----------------------------------------------------------------------------
 
+Config file:
+
+Qer supports a simple config file for a few options.  Qer will look for a config
+at $HOME/.qer. Here's a sample config file with the available flags.
+
+    --- 
+    queue_file: ~/Dropbox/.qer-queue  # default: ~/.qer-queue
+    page_width: 100                   # default: 80
+    history_length: 45                # default: 30
+
 == SYNOPSIS:
 
 Qer supports various operation for manipulating your Todo list.
