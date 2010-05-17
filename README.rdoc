@@ -26,8 +26,8 @@ Example Output:
 
 Config file:
 
-Qer supports a simple config file for a few options.  Qer will look for a config
-at $HOME/.qer. Here's a sample config file with the available flags.
+Qer supports a simple config file for a few options.  Qer will look for a YAML 
+config at $HOME/.qer. Here's a sample config file with the available flags.
 
     --- 
     queue_file: ~/Dropbox/.qer-queue  # default: ~/.qer-queue
