@@ -3,9 +3,11 @@ require 'test_helper.rb'
 class TestQer < Test::Unit::TestCase
 
   def setup
-    @file = File.join(File.dirname(__FILE__), 'testqueue.tmp')
-    File.delete(@file) if File.exists?(@file)
-    @todo = Qer::ToDo.new(@file)
+    queue = File.join(File.dirname(__FILE__), 'testqueue.tmp')
+    File.delete(queue) if File.exists?(queue)
+
+    @config = File.join(File.dirname(__FILE__), 'config')
+    @todo = Qer::ToDo.new(@config)
   end
 
   context "push" do
@@ -130,8 +132,8 @@ class TestQer < Test::Unit::TestCase
 
   context "read" do
     setup do
-      @file = File.join(File.dirname(__FILE__), 'test_queue')
-      @todo = Qer::ToDo.new(@file)
+      config = File.join(File.dirname(__FILE__), 'static-config')
+      @todo = Qer::ToDo.new(config)
     end
 
     should "have 5 items" do
@@ -143,7 +145,6 @@ class TestQer < Test::Unit::TestCase
     setup do
       @todo.add("Some Task")
       @todo.add("Some Other Task")
-      @other_todo = Qer::ToDo.new(@file)
     end
 
     should "have 2 items" do

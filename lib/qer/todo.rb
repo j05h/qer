@@ -1,5 +1,8 @@
 module Qer
   class ToDo
+
+    CONFIG_PATH = File.expand_path("~/.qer")
+
     class << self
       attr_accessor :quiet
     end
@@ -7,9 +10,8 @@ module Qer
     attr_accessor :queue
     attr_accessor :history
 
-    def initialize(filename = File.expand_path("~/.qer-queue"))
-      @filename  = filename
-      @history_filename = "#{filename}-history"
+    def initialize(config_file = CONFIG_PATH)
+      load_config(config_file)
 
       file {|f| self.queue = Marshal.load(f) } rescue self.queue= []
       history_file {|f| self.history = Marshal.load(f) } rescue self.history= []
@@ -81,13 +83,13 @@ module Qer
     end
 
     def file(mode = "r", &block)
-      File.open(@filename, mode) do |f|
+      File.open(filename, mode) do |f|
         yield f
       end
     end
 
     def history_file(mode = "r", &block)
-      File.open(@history_filename, mode) do |f|
+      File.open(history_filename, mode) do |f|
         yield f
       end
     end
@@ -98,6 +100,23 @@ module Qer
 
     def width
       80
+    end
+
+    def load_config(path)
+      @config = {}
+      return unless File.exist?(path)
+      @config = YAML.load_file(path)
+    rescue StandardError => e
+      puts "Error during config file loading."
+      puts "Error: #{e.name} - #{e.message}"
+    end
+
+    def filename
+      @filename ||= @config["queue_file"] || File.expand_path("~/.qer-queue")
+    end
+
+    def history_filename
+      @history_filename ||= "#{filename}-history"
     end
 
     def title
