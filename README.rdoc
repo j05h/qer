@@ -1,6 +1,6 @@
 = qer
 
-* http://github.com/j05h-qer
+* http://github.com/j05h/qer
 
 == DESCRIPTION:
 
