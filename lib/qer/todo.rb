@@ -166,25 +166,28 @@ module Qer
     end
 
     def command(args)
-      case(args.shift)
-      when /^a(dd)?/
+      cmd = args.shift
+      case(cmd)
+      when "add", "a"
         self.add(args.join(" "))     # qer add Some task 1
-      when /^r(emove)?/
+      when "remove", "r"
         self.remove(args.shift.to_i) # qer remove 0
-      when /^pu(sh)?/
+      when "push", "pu"
         self.push(args.join(" "))    # qer push Some task 2
-      when /^po(p)?/
+      when "pop", "po"
         self.pop                     # qer pop
-      when /^b(ump)?/
+      when "bump", "b"
         self.bump(*args.first(2))    # qer bump
-      when /^clear/
+      when "clear"
         self.clear(args.shift)       # qer clear
       when /.*help/
         self.help                    # qer help
-      when /^h(istory)?/
+      when "history", "h"
         self.print_history           # qer history
-      else
+      when "", nil
         self.print                # qer
+      else
+        self.no_match cmd
       end
     end
 
@@ -219,6 +222,10 @@ Commands:
 #{hl}
       EOF
       puts string unless self.class.quiet
+    end
+
+    def no_match cmd
+      puts "Did not recognize command: #{cmd}"
     end
   end
 end

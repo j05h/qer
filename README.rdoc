@@ -70,7 +70,7 @@ Commands:
 
 == INSTALL:
 
-sudo gem install qer
+gem install qer
 
 == LICENSE:
 

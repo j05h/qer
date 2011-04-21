@@ -172,6 +172,18 @@ class TestQer < Test::Unit::TestCase
       assert_output(/Adding: some stuff/)
     end
 
+    should "add with shorthand cmd" do
+      @todo.command(%w(a some stuff))
+      assert_equal 2, @todo.queue.size
+      assert_output(/Adding: some stuff/)
+    end
+
+    should "not add" do
+      @todo.command(%w(asdf))
+      assert_equal 1, @todo.queue.size
+      assert_output(/did not recognize/i)
+    end
+
     should "remove" do
       assert_equal "Some Task", @todo.command(%w(remove 0)).last
       assert_equal 0, @todo.queue.size
