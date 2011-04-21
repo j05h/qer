@@ -195,6 +195,12 @@ class TestQer < Test::Unit::TestCase
       assert_output "Provided index does not exist."
     end
 
+    should "not remove anything with nil index" do
+      @todo.command(%w(remove))
+      assert_output /Remove must have an index:/
+      assert_equal 1, @todo.queue.size
+    end
+
     should "push" do
       @todo.command(%w(push some stuff))
       assert_equal 2, @todo.queue.size

@@ -24,7 +24,11 @@ module Qer
     end
 
     def remove(index)
-      if item = self.queue.delete_at(index)
+      if index.nil?
+        print "Remove must have an index: ex. 'qer remove 3'"
+        return
+      end
+      if item = self.queue.delete_at(index.to_i)
         self.history << [Time.now.to_s, item[0], item[1]]
         write_history
         write
@@ -171,7 +175,7 @@ module Qer
       when "add", "a"
         self.add(args.join(" "))     # qer add Some task 1
       when "remove", "r"
-        self.remove(args.shift.to_i) # qer remove 0
+        self.remove(args.shift) # qer remove 0
       when "push", "pu"
         self.push(args.join(" "))    # qer push Some task 2
       when "pop", "po"
